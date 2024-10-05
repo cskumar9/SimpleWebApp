@@ -8,52 +8,72 @@
     <packaging>jar</packaging>
 
     <properties>
-        <java.version>11</java.version> <!-- Specify your JDK version -->
-        <spring.boot.version>2.5.0</spring.boot.version> <!-- Specify Spring Boot version -->
+        <java.version>11</java.version>
+        <spring.boot.version>2.5.0</spring.boot.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring.boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <version>${spring.boot.version}</version>
+            <version>2.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <version>${spring.boot.version}</version>
+            <version>2.5.0</version>
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.20</version> <!-- Specify Lombok version -->
+            <version>1.18.20</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Spring Boot Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
+                <version>2.5.0</version>
+		<executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
-	    <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.1</version> <!-- You can use a more recent version if needed -->
-            <configuration>
-                <source>1.8</source> <!-- Or 11 or 17, depending on your JDK version -->
-                <target>1.8</target> <!-- Or 11 or 17, depending on your JDK version -->
-            </configuration>
-        </plugin>
+
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source> <!-- or 1.8, depending on your JDK version -->
+                    <target>11</target> <!-- or 1.8, depending on your JDK version -->
+                </configuration>
+            </plugin>
+
+            <!-- Maven JAR Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.example.SimpleWebAppApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>		
         </plugins>
     </build>
 </project>
