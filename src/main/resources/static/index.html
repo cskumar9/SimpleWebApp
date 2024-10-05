@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Web App</title>
+    <title>DevOps Test App</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -15,29 +15,67 @@
             background-color: #f0f8ff;
             margin: 0;
         }
+
         h1 {
-            color: #333;
+            color: white;
+            background-color: #4CAF50;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-family: 'Verdana', sans-serif;
         }
+
         button {
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #2196F3;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
         }
+
         button:hover {
-            background-color: #45a049;
+            background-color: #1E88E5;
         }
+
         #message {
             margin-top: 20px;
             font-size: 18px;
             color: #666;
         }
+
         #message.shown {
             animation: fadeIn 1s ease-out;
         }
+
+        .section {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 18px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        li::before {
+            content: '✔️';
+            color: green;
+            margin-right: 10px;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -45,15 +83,26 @@
     </style>
 </head>
 <body>
-    <h1>It's working</h1>
-    <button onclick="showMessage()">Check</button>
-    <p id="message"></p>
+    <h1>DevOps Test App</h1>
+
+    <button onclick="toggleMessage()">Test Changes</button>
+    <div id="message" class="section" style="display: none;">
+        <ul>
+            <li>GitHub setup passed</li>
+            <li>Docker setup passed</li>
+            <li>TeamCity integration with GitHub passed</li>
+        </ul>
+    </div>
 
     <script>
-        function showMessage() {
+        function toggleMessage() {
             const messageElement = document.getElementById("message");
-            messageElement.innerText = "Great!";
-            messageElement.classList.add("shown");
+            if (messageElement.style.display === "none") {
+                messageElement.style.display = "block";
+                messageElement.classList.add("shown");
+            } else {
+                messageElement.style.display = "none";
+            }
         }
     </script>
 </body>
