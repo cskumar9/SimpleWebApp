@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simplewebapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simplewebapp
+  template:
+    metadata:
+      labels:
+        app: simplewebapp
+    spec:
+      containers:
+      - name: simplewebapp
+        image: saikumarch1/simplewebapp:latest # Replace with your Docker Hub image
+        ports:
+        - containerPort: 8080 # Change to the port your Spring Boot app is using
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+

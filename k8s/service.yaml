@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: simplewebapp
+spec:
+  type: NodePort
+  ports:
+  - port: 8080 # Change to the port your Spring Boot app is using
+    targetPort: 8080 # Port in the container
+    nodePort: 32267 # Change this to your preferred NodePort
+  selector:
+    app: simplewebapp
+
